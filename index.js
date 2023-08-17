@@ -36,3 +36,10 @@ function updateStorage(){
 function showNotes(){
     notesContainer.innerHTML = localStorage.getItem("notes");
 }
+
+document.addEventListener("keydown", event=>{
+    if(event.key === "Enter"){
+        document.execCommand("insertLineBreak");
+        event.preventDefault();
+    }
+}); 
