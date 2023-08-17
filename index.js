@@ -2,6 +2,8 @@ const notesContainer = document.querySelector(".notes-container");
 const createBtn = document.querySelector(".btn");
 let notes = document.querySelectorAll(".input-box");
 
+showNotes();
+
 //function to create notes
 createBtn.addEventListener("click",()=>{
     let inputBox = document.createElement("p");
@@ -18,12 +20,12 @@ notesContainer.addEventListener("click",(e)=>{
         e.target.parentElement.remove();
         updateStorage();
     }
-    else if(e.target.tagName === "P"){
-        notes.forEach(element=>{
-            element.addEventListener("onkeyup",updateStorage);
-        });
-    }
 });
+
+//function to save the updates
+notesContainer.addEventListener("input",()=>{
+    updateStorage();
+})
 
 //function to save the notes in the localStorage
 function updateStorage(){
@@ -32,5 +34,5 @@ function updateStorage(){
 
 //function to display the saved notes
 function showNotes(){
-    
+    notesContainer.innerHTML = localStorage.getItem("notes");
 }
